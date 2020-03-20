@@ -17,19 +17,20 @@ source:
     - 0001-Fix-CMake-compilation-in-Windows.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py2k and win]
   script:
     - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" ..  # [unix]
-    - cmake -G "%CMAKE_GENERATOR%" -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ..  # [win]
+    - cmake -GNinja -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ..  # [win]
     - cmake --build . --target install
     - ctest .
 
 requirements:
   build:
     - cmake
+    - ninja  # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
 
