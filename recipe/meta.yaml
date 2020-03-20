@@ -17,7 +17,7 @@ source:
     - 0001-Fix-CMake-compilation-in-Windows.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py2k and win]
   script:
     - mkdir build
