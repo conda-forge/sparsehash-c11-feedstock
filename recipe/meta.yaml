@@ -23,13 +23,14 @@ build:
     - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" ..  # [unix]
-    - cmake -G "%CMAKE_GENERATOR%" -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ..  # [win]
+    - cmake -GNinja -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ..  # [win]
     - cmake --build . --target install
     - ctest .
 
 requirements:
   build:
     - cmake
+    - ninja  # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
 
